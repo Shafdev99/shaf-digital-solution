@@ -1,0 +1,331 @@
+<div class="landing-v3">
+    <header class="v3-header" id="top">
+        <nav class="navbar navbar-expand-lg">
+            <div class="container shaf-container">
+                <a class="v3-brand" href="#top" aria-label="SHAF Digital Solution">
+                    <!-- <span class="v3-brand-mark">S</span> -->
+                    <img src="/images/logo/shaf-logo.png" width="50" class="img-fluid" alt="">
+                    <span><strong>SHAF</strong><small>Digital Solution</small></span>
+                </a>
+                <button class="navbar-toggler v3-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#mainNav" aria-label="Buka navigasi"><span></span><span></span></button>
+                <div class="collapse navbar-collapse" id="mainNav">
+                    <ul class="navbar-nav mx-auto v3-nav">
+                        <li><a href="#layanan">Layanan</a></li>
+                        <li><a href="#karya">Portfolio</a></li>
+                        <li><a href="#produk">Produk</a></li>
+                        <li><a href="#tentang">Tentang</a></li>
+                        <li><a href="#kontak">Kontak</a></li>
+                    </ul>
+                    <a class="v3-btn v3-btn-dark" href="#kontak">Mulai ngobrol <span>↗</span></a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main id="main">
+        <section class="v3-hero">
+            <div class="v3-hero-orb v3-orb-a"></div>
+            <div class="v3-hero-orb v3-orb-b"></div>
+            <div class="container shaf-container">
+                <div class="v3-hero-grid">
+                    <div class="v3-hero-copy reveal">
+                        <span class="v3-kicker"><i></i> SHAF DIGITAL SOLUTION</span>
+                        <h1>Ide yang masih berantakan,<br><em>kita bikin jadi beres.</em></h1>
+                        <p>Dari dokumen dan data sampai website dan dukungan IT. Satu partner untuk menyelesaikan
+                            pekerjaan digital yang benar-benar dibutuhkan.</p>
+                        <div class="v3-actions"><a class="v3-btn v3-btn-primary" href="#kontak">Konsultasi gratis
+                                <span>↗</span></a><a class="v3-link" href="#layanan">Lihat layanan <span>↓</span></a>
+                        </div>
+                        <div class="v3-proof"><span><b>01</b> Komunikasi langsung</span><span><b>02</b> Solusi sesuai
+                                kebutuhan</span><span><b>03</b> Tanpa proses ribet</span></div>
+                    </div>
+
+                    <div class="v3-hero-mascot reveal reveal-delay">
+                        <div class="v3-mascot-stage">
+                            <div class="v3-status"><i></i> Wikan online</div>
+                            <div class="v3-mascot-glow"></div>
+                            <img class="v3-wikan" src="/images/wikan/wikan-hero.png" alt="Wikan, AI Companion for SHAF"
+                                loading="eager">
+                            <div class="v3-speech"><strong>Halo! Saya Wikan.</strong><span>AI Companion for SHAF</span>
+                            </div>
+                            <div class="v3-service-pill v3-pill-1"><b>01</b><span>Dokumen</span><small>Rapi & siap
+                                    dipakai</small></div>
+                            <div class="v3-service-pill v3-pill-2"><b>02</b><span>Data</span><small>Ubah data jadi
+                                    informasi</small></div>
+                            <div class="v3-service-pill v3-pill-3"><b>03</b><span>Website</span><small>Cepat &
+                                    responsif</small></div>
+                            <div class="v3-service-pill v3-pill-4"><b>04</b><span>IT Support</span><small>Teman saat ada
+                                    masalah</small></div>
+                        </div>
+                        <div class="v3-mascot-caption"><strong>Wikan</strong><span>AI Companion for SHAF</span>
+                            <p>“Bukan sekadar AI, tapi partner dalam setiap langkah.”</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="v3-intro" id="tentang">
+            <div class="container shaf-container">
+                <div class="v3-intro-grid">
+                    <div class="reveal"><span class="v3-kicker">TENTANG SHAF</span>
+                        <h2>Lebih dari sekadar<br><em>penyedia layanan digital.</em></h2>
+                    </div>
+                    <div class="v3-intro-copy reveal">
+                        <p>SHAF Digital Solution adalah partner teknologi untuk membantu bisnis dan pekerjaan menjadi
+                            lebih sederhana melalui solusi digital yang praktis, inovatif, dan berkelanjutan.</p>
+                        <div class="v3-traits"><span><b>✦</b> Profesional<small>Berpengalaman &
+                                    terpercaya</small></span><span><b>◉</b> Inovatif<small>Selalu mengikuti
+                                    perkembangan</small></span><span><b>⌘</b> Kolaboratif<small>Tumbuh bersama
+                                    klien</small></span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="v3-services" id="layanan">
+            <div class="container shaf-container">
+                <div class="v3-section-head reveal">
+                    <div><span class="v3-kicker">PONDASI SHAF</span>
+                        <h2>Layanan<br><em>digital SHAF.</em></h2>
+                    </div><a class="v3-link" href="#kontak">Diskusikan kebutuhan <span>↗</span></a>
+                </div>
+                <div class="v3-service-grid">
+                    <% if (!services.length) { %>
+                        <div class="cms-public-empty">Belum ada layanan yang dipublikasikan.</div>
+                        <% } %>
+                            <% services.forEach((service, index)=> { %>
+                                <a class="v3-service-card reveal" href="#kontak"><span class="v3-service-index">0<%=
+                                            index + 1 %></span>
+                                    <div class="v3-service-icon">
+                                        <%= ['▤','◌','⌘','◉'][index] || '✦' %>
+                                    </div>
+                                    <h3>
+                                        <%= service.title %>
+                                    </h3>
+                                    <p>
+                                        <%= service.description %>
+                                    </p><span class="v3-card-arrow">↗</span>
+                                </a>
+                                <% }) %>
+                </div>
+            </div>
+        </section>
+
+        <section class="v3-work" id="karya">
+            <div class="container shaf-container">
+                <div class="v3-section-head reveal">
+                    <div><span class="v3-kicker">PORTFOLIO</span>
+                        <h2>Karya terbaik<br><em>biar bicara sendiri.</em></h2>
+                    </div><a class="v3-link" href="/portfolio">Lihat semua karya <span>↗</span></a>
+                </div>
+                <% if (!portfolio.length) { %>
+                    <div class="cms-public-empty">Belum ada portfolio yang dipublikasikan.</div>
+                    <% } else { %>
+                        <% const featuredItems=featuredPortfolio.length ? featuredPortfolio : portfolio.slice(0, 4); %>
+                            <div class="v3-work-grid">
+                                <% featuredItems.slice(0,4).forEach((item,index)=> { %>
+                                    <article class="v3-work-card reveal <%= index === 0 ? 'is-large' : '' %>">
+                                        <a href="/portfolio/<%= item.slug %>" class="v3-work-image">
+                                            <% if (item.image) { %><img src="<%= item.image %>" alt="<%= item.title %>"
+                                                    loading="lazy">
+                                                <% } else { %>
+                                                    <div class="v3-placeholder"><strong>
+                                                            <%= item.title %>
+                                                        </strong><small>Project preview</small></div>
+                                                    <% } %>
+                                        </a>
+                                        <div class="v3-work-info"><span>
+                                                <%= item.category %> · <%= item.year %>
+                                            </span>
+                                            <h3><a href="/portfolio/<%= item.slug %>">
+                                                    <%= item.title %>
+                                                </a></h3>
+                                            <p>
+                                                <%= item.description %>
+                                            </p><a class="v3-round" href="/portfolio/<%= item.slug %>"
+                                                aria-label="Lihat project">↗</a>
+                                        </div>
+                                    </article>
+                                    <% }) %>
+                            </div>
+                            <% } %>
+            </div>
+        </section>
+
+        <section class="v3-products" id="produk">
+            <div class="container shaf-container">
+                <div class="v3-section-head reveal">
+                    <div><span class="v3-kicker">PRODUK DIGITAL</span>
+                        <h2>Solusi siap pakai,<br><em>tanpa mulai dari nol.</em></h2>
+                    </div><a class="v3-link" href="/produk">Lihat semua produk <span>↗</span></a>
+                </div>
+                <% if (!products.length) { %>
+                    <div class="cms-public-empty">Belum ada produk digital yang dipublikasikan.</div>
+                    <% } else { %>
+                        <div class="v3-product-grid">
+                            <% products.slice(0,4).forEach((product,index)=> { %>
+                                <article class="v3-product-card reveal">
+                                    <div class="v3-product-image">
+                                        <% if (product.image) { %><img src="<%= product.image %>"
+                                                alt="<%= product.name %>" loading="lazy">
+                                            <% } else { %>
+                                                <div class="v3-placeholder"><strong>
+                                                        <%= product.name %>
+                                                    </strong></div>
+                                                <% } %>
+                                    </div>
+                                    <div class="v3-product-body"><span>
+                                            <%= product.tag %>
+                                        </span>
+                                        <h3>
+                                            <%= product.name %>
+                                        </h3>
+                                        <p>
+                                            <%= product.description %>
+                                        </p><a class="v3-round" href="/products/<%= product.slug %>">↗</a>
+                                    </div>
+                                </article>
+                                <% }) %>
+                        </div>
+                        <% } %>
+            </div>
+        </section>
+
+        <section class="v3-testimonials" id="testimoni">
+            <div class="container shaf-container">
+                <div class="v3-section-head reveal">
+                    <div><span class="v3-kicker">TESTIMONI</span>
+                        <h2>Apa kata mereka<br><em>tentang SHAF?</em></h2>
+                    </div>
+                    <div class="v3-controls"><button type="button" data-testimonial-prev
+                            aria-label="Sebelumnya">←</button><button type="button" data-testimonial-next
+                            aria-label="Berikutnya">→</button></div>
+                </div>
+                <% if (testimonials.length) { %>
+                    <div class="testimonial-carousel v3-testimonial-carousel" data-testimonial-carousel>
+                        <div class="testimonial-track">
+                            <% testimonials.forEach(item=> { %><article class="testimonial-card v3-testimonial-card">
+                                    <div class="testimonial-quote">“</div>
+                                    <blockquote>
+                                        <%= item.quote %>
+                                    </blockquote>
+                                    <footer><span class="testimonial-avatar">
+                                            <% if (item.image) { %><img src="<%= item.image %>" alt="<%= item.name %>"
+                                                    loading="lazy">
+                                                <% } else { %>
+                                                    <%= item.name?.charAt(0)?.toUpperCase() || 'C' %>
+                                                        <% } %>
+                                        </span><span class="testimonial-person"><strong>
+                                                <%= item.name %>
+                                            </strong><span>
+                                                <%= item.role || 'Client' %>
+                                            </span></span></footer>
+                                </article>
+                                <% }) %>
+                        </div>
+                    </div>
+                    <% } else { %>
+                        <div class="cms-public-empty">Belum ada testimonial yang dipublikasikan.</div>
+                        <% } %>
+            </div>
+        </section>
+
+        <section class="v3-process" id="proses">
+            <div class="container shaf-container">
+                <div class="v3-process-head reveal"><span class="v3-kicker v3-kicker-light">CARA KERJA</span>
+                    <h2>Jelas dari awal.<br><em>Tenang sampai selesai.</em></h2>
+                    <p>Mulai dari masalahnya, bukan dari teknologinya.</p>
+                </div>
+                <div class="v3-process-grid">
+                    <% process.forEach((item,index)=>{ %><article class="v3-process-step reveal"><span>0<%= index+1 %>
+                            </span>
+                            <div>
+                                <h3>
+                                    <%= item.title %>
+                                </h3>
+                                <p>
+                                    <%= item.description %>
+                                </p>
+                            </div><i>→</i>
+                        </article>
+                        <% }) %>
+                </div>
+            </div>
+        </section>
+
+        <section class="v3-facts">
+            <div class="container shaf-container">
+                <div class="v3-facts-head reveal"><span class="v3-kicker v3-kicker-light">SHAF DALAM ANGKA</span>
+                    <h2>Teknologi yang dibuat<br><em>untuk berguna.</em></h2>
+                </div>
+                <div class="v3-facts-grid">
+                    <div><strong>50+</strong><span>Project selesai</span></div>
+                    <div><strong>20+</strong><span>Klien & pengguna</span></div>
+                    <div><strong>3+</strong><span>Tahun pengalaman</span></div>
+                    <div><strong>99%</strong><span>Niat untuk terus membantu</span></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="v3-contact" id="kontak">
+            <div class="container shaf-container">
+                <div class="v3-contact-grid">
+                    <div class="v3-contact-copy reveal"><span class="v3-kicker">MARI DISKUSIKAN IDE ANDA</span>
+                        <h2>Punya ide?<br><em>Jangan dipendam.</em></h2>
+                        <p>Ceritakan kebutuhanmu. Bisa mulai dari pertanyaan sederhana, request, atau masalah yang
+                            sedang kamu hadapi.</p><a class="v3-btn v3-btn-primary" href="<%= whatsappUrl %>"
+                            target="_blank" rel="noopener">Chat via WhatsApp <span>↗</span></a>
+                        <div class="v3-contact-wikan"><img src="/images/wikan/wikan-assist.jpg"
+                                alt="Wikan siap membantu" loading="lazy"><span><strong>Siap
+                                    membantu.</strong><small>Code · Design · Build · Deploy · Repeat</small></span>
+                        </div>
+                    </div>
+                    <div class="v3-contact-form reveal">
+                        <% if (contactSuccess) { %>
+                            <div class="contact-feedback success">
+                                <%= contactSuccess %>
+                            </div>
+                            <% } %>
+                                <% if (contactError) { %>
+                                    <div class="contact-feedback error">
+                                        <%= contactError %>
+                                    </div>
+                                    <% } %>
+                                        <form method="post" action="/contact">
+                                            <div class="v3-form-grid"><label>Nama<input name="name" type="text"
+                                                        placeholder="Nama kamu" autocomplete="name"
+                                                        required></label><label>Email<input name="email" type="email"
+                                                        placeholder="nama@email.com" autocomplete="email"
+                                                        required></label><label class="full">Subjek<input name="subject"
+                                                        type="text"
+                                                        placeholder="Misalnya: request website"></label><label
+                                                    class="full">Pesan<textarea name="message" rows="6"
+                                                        placeholder="Ceritakan kebutuhan atau masalah yang ingin dibantu..."
+                                                        required></textarea></label></div><button
+                                                class="v3-btn v3-btn-dark" type="submit">Kirim pesan
+                                                <span>↗</span></button>
+                                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="v3-footer">
+        <div class="container shaf-container">
+            <div class="v3-footer-main"><a class="v3-brand" href="#top">
+                    <!-- <span class="v3-brand-mark">S</span> -->
+                    <img src="/images/logo/shaf-logo.png" width="50" class="img-fluid" alt="">
+                    <span><strong>SHAF</strong><small>Digital
+                            Solution</small></span></a>
+                <p>Dokumen. Data. Website. IT Support.<br>Satu partner, banyak hal yang bisa dibereskan.</p>
+                <div class="v3-footer-links"><a href="#layanan">Layanan</a><a href="#karya">Portfolio</a><a
+                        href="#produk">Produk</a><a href="#kontak">Kontak</a></div>
+            </div>
+            <div class="v3-footer-bottom"><span>© 2026 SHAF Digital Solution</span><span>Indonesia</span><span>Dibuat
+                    dengan niat untuk berguna.</span><a href="#top">↑</a></div>
+        </div>
+    </footer>
+</div>

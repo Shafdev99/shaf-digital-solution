@@ -1,0 +1,101 @@
+<section class="page active-page" data-section="<%= activeSection %>">
+    <div class="page-intro">
+        <div>
+            <p class="eyebrow"><span></span> SHAF ADMIN</p>
+            <h1>Selamat datang, <em>
+                    <%= user?.name?.split(" ")[0] || " Pak" %>.
+                </em></h1>
+            <p>Kelola isi website SHAF dari satu tempat. Ringkas di desktop, nyaman juga dari HP.</p>
+        </div>
+        <a href="/logout" class="btn btn-light-shaf">Logout</a>
+    </div>
+
+    <div class="stats-grid">
+        <% stats.forEach((stat)=> { %>
+            <article class="stat-card">
+                <div class="stat-label">
+                    <%= stat.label %>
+                </div>
+                <div class="stat-value <%= stat.value.length > 10 ? 'small' : '' %>">
+                    <%= stat.value %>
+                </div>
+                <div class="stat-note <%= stat.type === 'positive' ? 'positive' : '' %>">
+                    <%= stat.note %>
+                </div>
+                <span class="stat-mark <%= stat.type === 'neutral' ? 'orange' : '' %>">
+                    <%= stat.type==='positive' ? '↗' : '◆' %>
+                </span>
+            </article>
+            <% }) %>
+    </div>
+
+    <div class="dashboard-grid">
+        <section class="panel panel-main">
+            <div class="panel-head">
+                <div>
+                    <p class="section-kicker">CONTENT</p>
+                    <h2>Konten yang perlu diperhatikan</h2>
+                </div>
+                <a href="/dashboard/landing" data-page-link="landing">Kelola semua <span>→</span></a>
+            </div>
+            <div class="content-list">
+                <button class="content-row" data-page-link="portfolio">
+                    <div class="content-icon green">▧</div>
+                    <div><strong>Portfolio</strong><small>2 project masih berupa draft</small></div>
+                    <span class="status-pill draft">2 draft</span>
+                    <span class="row-arrow">→</span>
+                </button>
+                <button class="content-row" data-page-link="products">
+                    <div class="content-icon orange">□</div>
+                    <div><strong>Produk digital</strong><small>1 produk belum memiliki thumbnail</small></div>
+                    <span class="status-pill warning">Perlu aksi</span>
+                    <span class="row-arrow">→</span>
+                </button>
+                <button class="content-row" data-page-link="testimonials">
+                    <div class="content-icon green">“</div>
+                    <div><strong>Testimonial</strong><small>3 testimonial menunggu publikasi</small></div>
+                    <span class="status-pill draft">3 pending</span>
+                    <span class="row-arrow">→</span>
+                </button>
+            </div>
+        </section>
+
+        <section class="panel activity-panel">
+            <div class="panel-head">
+                <div>
+                    <p class="section-kicker">ACTIVITY</p>
+                    <h2>Aktivitas terbaru</h2>
+                </div>
+                <button class="text-btn">Semua</button>
+            </div>
+            <div class="activity-list">
+                <% activity.forEach((item)=> { %>
+                    <div class="activity">
+                        <span class="activity-dot <%= item.tone %>"></span>
+                        <div>
+                            <strong>
+                                <%= item.title %>
+                            </strong>
+                            <small>
+                                <%= item.detail %>
+                            </small>
+                        </div>
+                    </div>
+                    <% }) %>
+            </div>
+        </section>
+    </div>
+
+    <section class="quick-section">
+        <div class="section-kicker">QUICK ACTION</div>
+        <div class="quick-grid">
+            <% quickActions.forEach((action)=> { %>
+                <button data-page-link="<%= action.target %>"><span>+</span><strong>
+                        <%= action.label %>
+                    </strong><small>
+                        <%= action.hint %>
+                    </small></button>
+                <% }) %>
+        </div>
+    </section>
+</section>

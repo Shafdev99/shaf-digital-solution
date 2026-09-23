@@ -1,0 +1,35 @@
+<header class="public-simple-header">
+    <div class="container shaf-container">
+        <a class="brand" href="/">
+            <span class="brand-mark">S</span>
+            <span class="brand-text"><strong>SHAF</strong><small>Digital Solution</small></span>
+        </a>
+        <nav>
+            <a href="/">Beranda</a>
+            <a href="/portfolio">Karya</a>
+            <a href="/produk">Produk</a>
+            <a class="btn btn-dark-shaf" href="/#kontak">Konsultasi <span>↗</span></a>
+        </nav>
+    </div>
+</header>
+<main class="public-detail-page section-pad">
+    <div class="container shaf-container">
+        <% if (!product) { %>
+            <div class="empty-state"><strong>Produk tidak ditemukan.</strong><span>Produk yang kamu cari belum tersedia.</span><a class="btn btn-shaf" href="/produk">Kembali ke produk</a></div>
+        <% } else { %>
+            <a class="text-link detail-back" href="/produk">← Semua produk</a>
+            <div class="detail-grid reveal">
+                <div>
+                    <p class="section-kicker"><%= product.category || 'DIGITAL PRODUCT' %></p>
+                    <h1><%= product.name %></h1>
+                    <p class="detail-lead"><%= product.description || product.short_description || '' %></p>
+                    <a class="btn btn-primary-shaf" href="#kontak">Tanya produk <span>↗</span></a>
+                </div>
+                <div class="detail-image">
+                    <% if (product.image) { %><img src="<%= product.image %>" alt="<%= product.name %>"><% } else { %><div class="product-image-placeholder"><span><%= product.name %></span></div><% } %>
+                </div>
+            </div>
+        <% } %>
+    </div>
+</main>
+<footer class="simple-public-footer"><div class="container shaf-container"><span>© 2026 SHAF Digital Solution</span><a href="/">Kembali ke beranda ↑</a></div></footer>

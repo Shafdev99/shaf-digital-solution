@@ -1,0 +1,28 @@
+<div class="auth-shell">
+    <section class="auth-card">
+        <a class="auth-brand" href="/">
+            <span class="brand-mark">S</span>
+            <span><strong>SHAF</strong><small>Digital Solution</small></span>
+        </a>
+        <p class="auth-kicker">ADMIN AREA</p>
+        <h1>Selamat datang kembali.</h1>
+
+        <% if (error) { %><div class="auth-alert"><%= error %></div><% } %>
+        <% if (message) { %><div class="auth-success"><%= message %></div><% } %>
+
+        <form class="auth-form" method="post" action="/login">
+            <label for="username">Username</label>
+            <input id="username" name="username" type="text" autocomplete="username" placeholder="Masukkan username" required>
+
+            <label for="password">Password</label>
+            <input id="password" name="password" type="password" autocomplete="current-password" placeholder="Masukkan password" required>
+
+            <button class="btn" type="submit">Masuk ke dashboard <span>↗</span></button>
+        </form>
+
+        <div class="auth-links">
+            <a href="/forgot-password">Lupa password?</a>
+            <a href="/">Kembali ke website</a>
+        </div>
+    </section>
+</div>

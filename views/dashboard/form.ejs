@@ -1,0 +1,110 @@
+<section class="page active-page" data-section="<%= activeSection %>">
+    <div class="page-intro compact">
+        <div>
+            <p class="eyebrow"><span></span> CMS CONTENT</p>
+            <h1><%= pageTitle %></h1>
+            <p>Perubahan disimpan ke MySQL dan akan digunakan oleh website publik.</p>
+        </div>
+        <a class="btn btn-light-shaf" href="/dashboard/<%= resourceKey %>">Kembali</a>
+    </div>
+
+    <% if (error) { %>
+        <div class="feedback error"><strong>Gagal menyimpan.</strong> <%= error %></div>
+    <% } %>
+
+    <form class="panel cms-form" method="post" enctype="multipart/form-data"
+        action="/dashboard/<%= resourceKey %>/save<%= record ? `/${record.id}` : '' %>">
+        <div class="form-grid">
+            <% resource.fields.forEach((field)=> {
+                const value = record?.dataValues?.[field] ?? record?.[field] ?? '';
+                const labelMap = {
+                    title: 'Judul',
+                    name: 'Nama',
+                    slug: 'Slug',
+                    description: 'Deskripsi',
+                    short_description: 'Deskripsi singkat',
+                    quote: 'Testimonial',
+                    answer: 'Jawaban',
+                    question: 'Pertanyaan',
+                    role: 'Peran / perusahaan',
+                    email: 'Email',
+                    subject: 'Subjek',
+                    message: 'Pesan',
+                    category: 'Kategori',
+                    icon: 'Icon / tag',
+                    url: 'URL project / link',
+                    order: 'Urutan',
+                    key: 'Key',
+                    value: 'Value'
+                };
+                const placeholderMap = {
+                    title: 'Contoh: Website Company Profile',
+                    name: 'Contoh: SHAF Node StarterKit',
+                    slug: 'Slug akan dibuat otomatis dari judul',
+                    description: 'Jelaskan isi, manfaat, atau detail konten...',
+                    short_description: 'Ringkasan singkat yang tampil di kartu...',
+                    quote: 'Tulis pengalaman atau komentar client...',
+                    answer: 'Tulis jawaban yang jelas dan singkat...',
+                    question: 'Contoh: Apakah bisa konsultasi dulu?',
+                    role: 'Contoh: Owner / PT ABC',
+                    email: 'nama@email.com',
+                    subject: 'Contoh: Konsultasi website',
+                    message: 'Isi pesan atau permintaan...',
+                    category: 'Contoh: WEB DESIGN',
+                    icon: 'Contoh: doc, data, web, it',
+                    url: 'https://contoh.com',
+                    order: 'Contoh: 1',
+                    key: 'Contoh: whatsapp_url',
+                    value: 'Nilai pengaturan'
+                };
+                const label = labelMap[field] || field.replaceAll('_', ' ');
+                const placeholder = placeholderMap[field] || `Masukkan ${label.toLowerCase()}`;
+            %>
+                <% if (['description','short_description','quote','answer','message'].includes(field)) { %>
+                    <label class="form-field full">
+                        <span><%= label %></span>
+                        <textarea name="<%= field %>" rows="5" placeholder="<%= placeholder %>"
+                            <%= ['description','quote','answer','message'].includes(field) ? 'required' : '' %>><%= value %></textarea>
+                    </label>
+                <% } else if (field === 'status') { %>
+                    <label class="form-field">
+                        <span>Status</span>
+                        <select name="status">
+                            <option value="published" <%= value === 'published' || !value ? 'selected' : '' %>>Published</option>
+                            <option value="draft" <%= value === 'draft' ? 'selected' : '' %>>Draft</option>
+                        </select>
+                    </label>
+                <% } else if (['featured','read_status'].includes(field)) { %>
+                    <label class="check-field">
+                        <input type="checkbox" name="<%= field %>" <%= value ? 'checked' : '' %>>
+                        <span><%= field === 'featured' ? 'Tampilkan sebagai unggulan' : 'Sudah dibaca' %></span>
+                    </label>
+                <% } else if (field === 'image') { %>
+                    <div class="form-field full">
+                        <span>Gambar</span>
+                        <label class="image-dropzone" data-image-dropzone>
+                            <input name="image" type="file" accept="image/jpeg,image/png,image/webp,image/gif" data-image-input hidden>
+                            <span class="dropzone-icon">↑</span>
+                            <strong>Tarik & lepas gambar di sini</strong>
+                            <small>atau klik untuk memilih file · maksimal 5 MB</small>
+                            <img class="image-preview <%= value ? 'show' : '' %>" data-image-preview alt="Preview gambar" <%= value ? `src="${String(value).startsWith('/') ? value : '/' + value}` : '' %>>
+                        </label>
+                    </div>
+                <% } else { %>
+                    <label class="form-field">
+                        <span><%= label %></span>
+                        <input name="<%= field %>" value="<%= value %>"
+                            placeholder="<%= placeholder %>"
+                            <%= ['title','name','slug','email','question'].includes(field) ? 'required' : '' %>
+                            <%= field === 'order' ? 'type="number" min="1" inputmode="numeric"' : field === 'email' ? 'type="email"' : field === 'url' ? 'type="url"' : 'type="text"' %>
+                            <%= resourceKey === 'services' && field === 'slug' ? 'data-service-slug' : '' %><%= resourceKey === 'services' && field === 'title' ? ' data-service-title' : '' %>>
+                    </label>
+                <% } %>
+            <% }) %>
+        </div>
+        <div class="form-actions">
+            <a class="btn btn-light-shaf" href="/dashboard/<%= resourceKey %>">Batal</a>
+            <button class="btn btn-shaf" type="submit">Simpan perubahan <span>↗</span></button>
+        </div>
+    </form>
+</section>

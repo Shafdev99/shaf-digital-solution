@@ -1,0 +1,35 @@
+<header class="public-simple-header">
+    <div class="container shaf-container">
+        <a class="brand" href="/">
+            <span class="brand-mark">S</span>
+            <span class="brand-text"><strong>SHAF</strong><small>Digital Solution</small></span>
+        </a>
+        <nav>
+            <a href="/">Beranda</a>
+            <a href="/portfolio">Karya</a>
+            <a href="/produk">Produk</a>
+            <a class="btn btn-dark-shaf" href="/#kontak">Konsultasi <span>↗</span></a>
+        </nav>
+    </div>
+</header>
+<main class="public-detail-page section-pad">
+    <div class="container shaf-container">
+        <% if (!portfolio) { %>
+            <div class="empty-state"><strong>Portfolio tidak ditemukan.</strong><span>Karya yang kamu cari belum tersedia.</span><a class="btn btn-shaf" href="/portfolio">Kembali ke portfolio</a></div>
+        <% } else { %>
+            <a class="text-link detail-back" href="/portfolio">← Semua karya</a>
+            <div class="detail-grid reveal">
+                <div>
+                    <p class="section-kicker"><%= portfolio.category %></p>
+                    <h1><%= portfolio.title %></h1>
+                    <p class="detail-lead"><%= portfolio.description %></p>
+                    <% if (portfolio.url) { %><a class="btn btn-primary-shaf" href="<%= portfolio.url %>" target="_blank" rel="noopener">Buka project <span>↗</span></a><% } %>
+                </div>
+                <div class="detail-image">
+                    <% if (portfolio.image) { %><img src="<%= portfolio.image %>" alt="<%= portfolio.title %>"><% } else { %><div class="portfolio-placeholder"><span><%= portfolio.title %></span></div><% } %>
+                </div>
+            </div>
+        <% } %>
+    </div>
+</main>
+<footer class="simple-public-footer"><div class="container shaf-container"><span>© 2026 SHAF Digital Solution</span><a href="/">Kembali ke beranda ↑</a></div></footer>

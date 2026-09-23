@@ -1,0 +1,135 @@
+<section class="page active-page" data-section="<%= activeSection %>">
+    <div class="page-intro compact">
+        <div>
+            <p class="eyebrow"><span></span> CMS CONTENT</p>
+            <h1>
+                <%= pageTitle %>
+            </h1>
+            <p>Kelola data yang tampil di website publik melalui database SHAF.</p>
+        </div>
+        <% if (!['messages', 'settings'].includes(resourceKey)) { %>
+            <a class="btn btn-shaf" href="/dashboard/<%= resourceKey %>/form">Tambah <%= resource.label %>
+                    <span>+</span></a>
+            <% } %>
+    </div>
+
+    <% if (success) { %>
+        <div class="feedback success"><strong>Berhasil.</strong>
+            <%= success %>
+        </div>
+        <% } %>
+            <% if (error) { %>
+                <div class="feedback error"><strong>Perlu diperiksa.</strong>
+                    <%= error %>
+                </div>
+                <% } %>
+
+                    <section class="panel cms-panel">
+                        <form class="cms-toolbar" method="get" action="/dashboard/<%= activeSection %>">
+                            <label class="search-field"><span>⌕</span><input name="search"
+                                    value="<%= query.search || '' %>" placeholder="Cari data..."></label>
+                            <% if (resource.fields.includes('status')) { %>
+                                <select name="status" aria-label="Filter status">
+                                    <option value="">Semua status</option>
+                                    <option value="published" <%=query.status==='published' ? 'selected' : '' %>
+                                        >Published</option>
+                                    <option value="draft" <%=query.status==='draft' ? 'selected' : '' %>>Draft</option>
+                                </select>
+                                <% } %>
+                                    <% if (resource.fields.includes('read_status')) { %>
+                                        <select name="read_status" aria-label="Filter pesan">
+                                            <option value="">Semua pesan</option>
+                                            <option value="unread" <%=query.read_status==='unread' ? 'selected' : '' %>
+                                                >Belum dibaca</option>
+                                            <option value="read" <%=query.read_status==='read' ? 'selected' : '' %>
+                                                >Sudah dibaca</option>
+                                        </select>
+                                        <% } %>
+                                            <select name="limit" aria-label="Jumlah per halaman">
+                                                <% [10, 25, 50].forEach((size)=> { %><option value="<%= size %>"
+                                                        <%=Number(limit)===size ? 'selected' : '' %>><%= size %> /
+                                                            halaman</option>
+                                                    <% }) %>
+                                            </select>
+                                            <button class="btn btn-light-shaf" type="submit">Terapkan</button>
+                        </form>
+
+                        <% if (!records.length) { %>
+                            <div class="empty-state"><strong>Belum ada data.</strong><span>Tambahkan konten pertama
+                                    untuk mengisinya.</span></div>
+                            <% } else { %>
+                                <div class="cms-table-wrap">
+                                    <table class="cms-table">
+                                        <thead>
+                                            <tr>
+                                                <% resource.columns.forEach((column)=> { %><th>
+                                                        <%= column.replace('_', ' ' ) %>
+                                                    </th>
+                                                    <% }) %>
+                                                        <th>Aksi</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <% records.forEach((record)=> { %>
+                                                <tr>
+                                                    <% resource.columns.forEach((column)=> { %>
+                                                        <td>
+                                                            <% if (column==='status' ) { %><span
+                                                                    class="status-pill <%= record[column] === 'published' ? 'live' : 'draft' %>">
+                                                                    <%= record[column] %>
+                                                                </span>
+                                                                <% } else if (column==='featured' ||
+                                                                    column==='read_status' ) { %><span
+                                                                        class="status-pill <%= record[column] ? 'live' : 'draft' %>">
+                                                                        <%= column==='read_status' ? (record[column]
+                                                                            ? 'Dibaca' : 'Belum dibaca' ) :
+                                                                            (record[column] ? 'Ya' : 'Tidak' ) %>
+                                                                    </span>
+                                                                    <% } else { %>
+                                                                        <%= record[column] || '-' %>
+                                                                            <% } %>
+                                                        </td>
+                                                        <% }) %>
+                                                            <td class="row-actions">
+                                                                <% if (resourceKey==='messages' ) { %>
+                                                                    <form method="post"
+                                                                        action="/dashboard/messages/read/<%= record.id %>">
+                                                                        <button class="table-action" type="submit">
+                                                                            <%= record.read_status
+                                                                                ? 'Tandai belum dibaca'
+                                                                                : 'Tandai dibaca' %>
+                                                                        </button></form>
+                                                                    <% } else { %>
+                                                                        <a class="table-action"
+                                                                            href="/dashboard/<%= resourceKey %>/form/<%= record.id %>">Edit</a>
+                                                                        <% } %>
+                                                                            <form method="post"
+                                                                                action="/dashboard/<%= resourceKey %>/delete/<%= record.id %>"
+                                                                                data-confirm="Hapus data ini?"><button
+                                                                                    class="table-action danger"
+                                                                                    type="submit">Hapus</button></form>
+                                                            </td>
+                                                </tr>
+                                                <% }) %>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="pagination-row">
+                                    <span>
+                                        <%= count %> data ditemukan
+                                    </span>
+                                    <div>
+                                        <% if (page> 1) { %><a
+                                                href="?page=<%= page - 1 %>&limit=<%= limit %>&search=<%= encodeURIComponent(query.search || '') %>">←
+                                                Sebelumnya</a>
+                                            <% } %>
+                                                <strong>Halaman <%= page %> / <%= pages %></strong>
+                                                <% if (page < pages) { %><a
+                                                        href="?page=<%= page + 1 %>&limit=<%= limit %>&search=<%= encodeURIComponent(query.search || '') %>">Berikutnya
+                                                        →</a>
+                                                    <% } %>
+                                    </div>
+                                </div>
+                                <% } %>
+                    </section>
+</section>

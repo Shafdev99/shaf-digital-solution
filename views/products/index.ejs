@@ -1,0 +1,46 @@
+<header class="public-simple-header">
+    <div class="container shaf-container">
+        <a class="brand" href="/">
+            <span class="brand-mark">S</span>
+            <span class="brand-text"><strong>SHAF</strong><small>Digital Solution</small></span>
+        </a>
+        <nav>
+            <a href="/">Beranda</a>
+            <a href="/portfolio">Karya</a>
+            <a href="/produk">Produk</a>
+            <a class="btn btn-dark-shaf" href="/#kontak">Konsultasi <span>↗</span></a>
+        </nav>
+    </div>
+</header>
+<main class="public-list-page section-pad">
+    <div class="container shaf-container">
+        <div class="section-heading reveal">
+            <div>
+                <p class="section-kicker">PRODUK DIGITAL</p>
+                <h1>Yang bisa langsung<br><span>dipakai atau dibeli.</span></h1>
+            </div>
+            <p>StarterKit, tools, template, dan produk digital yang dibuat dari eksperimen SHAF.</p>
+        </div>
+
+        <% if (!products.length) { %>
+            <div class="cms-public-empty">Belum ada produk digital yang dipublikasikan.</div>
+        <% } else { %>
+            <div class="public-product-grid">
+                <% products.forEach((item) => { %>
+                    <article class="public-product-card reveal">
+                        <a href="/produk/<%= item.slug %>" class="public-card-image">
+                            <% if (item.image) { %><img src="<%= item.image %>" alt="<%= item.name %>" loading="lazy"><% } else { %><div class="product-image-placeholder"><span><%= item.name %></span></div><% } %>
+                        </a>
+                        <div class="public-card-body">
+                            <div class="work-meta"><span><%= item.category || 'DIGITAL PRODUCT' %></span><span><%= item.featured ? 'Unggulan' : '' %></span></div>
+                            <h2><a href="/produk/<%= item.slug %>"><%= item.name %></a></h2>
+                            <p><%= item.short_description || item.description || '' %></p>
+                            <a class="text-link" href="/produk/<%= item.slug %>">Lihat detail <span>↗</span></a>
+                        </div>
+                    </article>
+                <% }) %>
+            </div>
+        <% } %>
+    </div>
+</main>
+<footer class="simple-public-footer"><div class="container shaf-container"><span>© 2026 SHAF Digital Solution</span><a href="/">Kembali ke beranda ↑</a></div></footer>
